@@ -1,0 +1,44 @@
+[90mGET / [32m200 [90m356ms - 4.37kb[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m80ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m75ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m10ms[0m
+[90mGET /devices/isOnWorking [36m304 [90m228ms[0m
+[90mGET /devices/start [32m200 [90m3076ms - 16b[0m
+[90mGET /devices/isOnWorking [32m200 [90m196ms - 33b[0m
+[90mGET /devices/stop [32m200 [90m149ms - 26b[0m
+[90mGET /devices/isOnWorking [32m200 [90m76ms - 34b[0m
+[90mGET / [36m304 [90m58ms[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m18ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m14ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m8ms[0m
+[90mGET /devices/isOnWorking [36m304 [90m74ms[0m
+[90mGET /devices/dirIndex [32m200 [90m240ms - 3.74kb[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m32ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m24ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m11ms[0m
+2014-05-28 22:25:41.860000000 2
+2014-05-28 22:46:06.670000000 1
+[90mGET /devices/dirList [32m200 [90m141ms - 97b[0m
+[90mGET /image/showImageIndex?dirName=2 [32m200 [90m85ms - 6.12kb[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m16ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m12ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m8ms[0m
+2014-05-28 22:25:42.750000000 3.jpg
+2014-05-28 22:25:37.730000000 2.jpg
+2014-05-28 22:25:32.820000000 1.jpg
+[90mGET /image/imageListJson?dirName=2 [32m200 [90m102ms - 157b[0m
+[90mGET /image/showImage?dirName=2&fileName=3.jpg [32m200 [90m42ms[0m
+[90mGET /image/showImage?dirName=2&fileName=2.jpg [32m200 [90m44ms[0m
+[90mGET /image/showImage?dirName=2&fileName=1.jpg [32m200 [90m45ms[0m
+[90mGET /image/showImageIndex?dirName=2 [36m304 [90m68ms[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m22ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m20ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m17ms[0m
+[90mGET /image/imageListJson?dirName=2 [32m200 [90m89ms - 2b[0m
+[90mGET / [36m304 [90m60ms[0m
+[90mGET /vendors/bootstrap/css/bootstrap.min.css [36m304 [90m21ms[0m
+[90mGET /javascripts/jquery/jquery-1.9.0.js [36m304 [90m19ms[0m
+[90mGET /vendors/bootstrap/js/bootstrap.min.js [36m304 [90m17ms[0m
+[90mGET /devices/isOnWorking [36m304 [90m76ms[0m
+[90mGET /devices/start [36m304 [90m3044ms[0m
+[90mGET /devices/isOnWorking [32m200 [90m168ms - 33b[0m
