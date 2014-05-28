@@ -24,16 +24,41 @@
               text-align: center;
           }
       </style>
-      <script type="text/javascript" src="/js/jquery/jquery-1.9.0.js"></script>
+      <script type="text/javascript" src="/javascripts/jquery/jquery-1.9.0.js"></script>
       <script type="text/javascript" src="/vendors/bootstrap/js/bootstrap.min.js"></script>
 
       <script type="text/javascript">
 
          function startTimelapse(){
-             $.ajax("/device/start").done(function(data){
-                 alert(data.success);
+             $.ajax("/devices/start").done(function(data){
+                 loadComponents();
              });
          }
+         function stopTimelapse(){
+             $.ajax("/devices/stop").done(function(data){
+                 loadComponents();
+             });
+         }
+           function loadComponents(){
+               setTimeout(function(){
+                   $.ajax("/devices/isOnWorking").done(function(data){
+                       if(eval(data.isworking)){
+                           $("#tdIsWorking").html('<h4><span class="label label-warning">拍摄中</span></h4>');
+                           $("#tdOperate").html('<button type="button" class="btn btn-danger" onclick="javascript:stopTimelapse();">停止</button>');
+                       }else{
+
+                           $("#tdIsWorking").html('<h4><span class="label label-primary">未拍摄</span></h4>');
+                           $("#tdOperate").html('<button type="button" class="btn btn-info" onclick="javascript:startTimelapse();">开始</button>');
+                       }
+                   });
+               },1000)
+
+
+
+           }
+          $(function(){
+              loadComponents();
+          });
 
 
 
@@ -48,16 +73,16 @@
               <!-- Device list -->
               <table id="devListTable" class="table  table-hover table-striped"  style="margin-bottom: 0; text-align: center;">
                   <tr>
-                      <th></th>
+
                       <th>设备/缩拍</th>
+                      <th>状态</th>
                       <th>操作</th>
                   </tr>
                   <tr>
-                     <td></td>
+
                       <td><h4><span class="label label-primary">树莓派摄像头</span></h4></td>
-                      <td>
-                          <button type="button" class="btn btn-info" onclick="javascript:startTimelapse();">开始</button>
-                      </td>
+                      <td id="tdIsWorking"></td>
+                      <td id="tdOperate"></td>
                   </tr>
               </table>
           </div>
