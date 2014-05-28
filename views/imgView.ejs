@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title><%= title %></title>
+        <!-- <link rel='stylesheet' href='/stylesheets/style.css' />-->
+        <link href="/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            #btnBlink{
+                height:200px;
+                width:30%;
+                font-size:60px;
+                font-weight: bold;
+                color: lawngreen;
+            }
+            body {
+                padding-top: 50px;
+            }
+            tr th, tr td{
+                text-align: center;
+            }
+            .thumbnail img{
+                cursor:pointer;
+            }
+        </style>
+        <script type="text/javascript" src="/javascripts/jquery/jquery-1.9.0.js"></script>
+        <script type="text/javascript" src="/vendors/bootstrap/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+
+
+            var addListItem = function(data){
+                var items='';
+                for(var i=0; i<data.length; i++) {
+
+                        items += '<div class="row"><div class="col-xs-1 col-md-1"></div><div class="col-xs-10 col-md-10"><div class="thumbnail"><img src="/image/showImage?dirName=<%= dirName %>&fileName=' + data[i].name + '" id="firstImage" data-toggle="modal" data-target="#myModal" alt="图片" class="img-rounded img-responsive"><p style="text-align: center;margin-bottom:0;"><span class="label label-default">' + data[i].name + '(' + (data[i].createTime) + ')</span></p></div></div><div class="col-xs-1 col-md-1"></div></div>';
+
+                }
+                $(items).appendTo("#panelBody");
+            };
+
+            $(function(){
+                $("tr").click(function(){
+                    alert("TR click has been clicked!");
+                });
+
+
+                $('#myModal').on('hidden.bs.modal', function (e) {
+
+                })
+
+                $('#myModal').on('show.bs.modal', function (e) {
+                    var target = event.target || event.srcElement;
+                    var targetId = target.id;
+                    var fileName = $(target).next().find("span").text();
+                    $("#myModalLabel").text(fileName.split("(")[0]);
+                    $("#modalImgSrc").attr("src", $(target).attr("src"))
+                })
+
+                $("#closeModal").click(function(){
+                    $("#myModal").hide();
+                });
+
+                $.ajax("/image/imageListJson?dirName=<%= dirName %>").done(function(data){
+                    addListItem(data);
+                });
+
+            });
+
+        </script>
+    </head>
+    <body>
+    <%- include headNav.ejs %>
+
+    <div class="panel panel-default ">
+        <div class="panel-heading" style="padding-top:2px; padding-bottom: 2px;">
+            <!--Navi menu-->
+            <ol class="breadcrumb" style="margin-bottom: 0; ">
+                <li><a href="/">主页</a></li>
+                <li><a href="/devices/dirIndex">文件夹列表</a></li>
+                <li><%= dirName %></li>
+            </ol>
+        </div>
+        <div class="panel-body" id="panelBody">
+
+            <!-- <div class="col-xs-12 col-md-8">
+                 <div class="thumbnail">
+                     <div class="row">
+                         <div class="col-xs-2 col-md-3">
+
+                         </div>
+                         <div class="col-xs-4 col-md-2">
+                             <button type="button" class="btn btn-warning" disabled="disabled" style="color:mediumblue">第1页/共22页</button>
+                         </div>
+                         <div class="col-xs-3 col-md-2">
+                             <input type="text" class="form-control" placeholder=".col-xs-2">
+                         </div>
+                         <div class="col-xs-1 col-md-2">
+                             <button type="button" class="btn btn-primary btn-sm">跳转</button>
+                         </div>
+                         <div class="col-xs-2 col-md-3">
+
+                         </div>
+                     </div>
+                 </div>
+             </div>-->
+
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" style="float:right;" class="btn btn-danger btn-xs" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    <h4 class="modal-title" style="display: inline;" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <img src="" id="modalImgSrc" alt="图片" class="img-rounded img-responsive">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default"  style="margin-bottom: 0;text-align: center; ">
+        <div class="container" style="margin-top:15px;">
+            Copyright ©1996-2014 Charmyin Corporation
+        </div>
+    </nav>
+    </body>
+
+</html>

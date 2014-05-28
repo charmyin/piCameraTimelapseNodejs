@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title><%= title %></title>
+     <!-- <link rel='stylesheet' href='/stylesheets/style.css' />-->
+      <link href="/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <style>
+          #btnBlink{
+              height:200px;
+              width:30%;
+              font-size:60px;
+              font-weight: bold;
+              color: lawngreen;
+          }
+          body {
+              padding-top: 50px;
+          }
+          tr th, tr td{
+              text-align: center;
+          }
+      </style>
+      <script type="text/javascript" src="/javascripts/jquery/jquery-1.9.0.js"></script>
+      <script type="text/javascript" src="/vendors/bootstrap/js/bootstrap.min.js"></script>
+
+      <script>
+          var addListItem = function(data){
+              var items='';
+              for(var i=0; i<data.length; i++){
+                  items += '<tr><td>'+(i+1)+'</td><td>'+data[i].name+'</td><td>'+data[i].createTime+'</td><td><span class="badge">'+data[i].fileCount+'</span></td></tr>';
+              }
+              $(items).appendTo("#dirListTable");
+          };
+          $(function(){
+            $.ajax("/devices/dirList").done(function(data){
+                addListItem(data);
+                $("tr").click(function(){
+                    window.location="/image/showImageIndex?dirName="+$(this).find("td:eq(1)").text();
+                });
+            });
+          });
+
+      </script>
+  </head>
+  <body>
+      <%- include headNav.ejs %>
+
+      <div class="panel panel-default">
+          <div class="panel-heading success" style="padding-top:2px; padding-bottom: 2px;">
+              <!--Navi menu-->
+              <ol class="breadcrumb" style="margin-bottom: 0; ">
+                  <li><a href="/">主页</a></li>
+                  <li class="active">文件夹列表</li>
+              </ol>
+          </div>
+          <div class="panel-body">
+              <!-- Device list -->
+              <table id="dirListTable" class="table table-hover table-striped"  style="margin-bottom: 0;text-align: center;">
+                  <tr style="text-align: center;">
+                      <th></th>
+                      <th>文件夹名</th>
+                      <th>最后更新时间</th>
+                      <th>图片数</th>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <nav class="navbar navbar-default navbar-fixed-bottom"  style="margin-bottom: 0;text-align: center; ">
+          <div class="container" style="margin-top:15px;">
+              Copyright ©1996-2014 Charmyin Corporation
+          </div>
+      </nav>
+  </body>
+
+</html>

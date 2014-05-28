@@ -68,4 +68,33 @@ router.get('/stop', function(req, res) {
         });
 });
 
+router.get("/dirIndex", function(req, res){
+    res.render('dirList', { title: '文件列表' });
+});
+
+router.get("/dirList", function(req, res){
+
+    var exec = require('child_process').exec,
+        child;
+
+    child = exec('ls --full-time /mnt/usb -t | sort -nr -k9 | awk \'{print $6 " " $7 " " $9}\'',
+        function (error, stdout, stderr) {
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+            var stdoutArray = stdout.split("\n");
+            var responseDirectoryArray=[];
+            for(var i=0; i<stdoutArray.length-2; i++){
+                var tempStdoutArray = stdoutArray[i].split(" ");
+                var directoryTemp ={};
+                directoryTemp.createTime=tempStdoutArray[0]+" "+tempStdoutArray[1].split(".")[0];
+                directoryTemp.name=tempStdoutArray[2];
+                responseDirectoryArray.push(directoryTemp);
+                console.log(stdoutArray[i]);
+            }
+
+            res.json(responseDirectoryArray);
+        });
+});
+
 module.exports = router;
