@@ -38,9 +38,12 @@ router.get('/start', function(req, res) {
     child = exec(execCommand,
         function (error, stdout, stderr) {
             if (error !== null) {
-                clearTimeout(commandTimeout);
-                res.json({success:false, error:stderr});
+                console.log("oh no ---------------------------------");
+                //clearTimeout(commandTimeout);
+                return;
+                //res.json({success:false, error:stderr});
             }else{
+                console.log("oh no ++++++++++++++++++++++++++++++++++++++");
                 clearTimeout(commandTimeout);
                 res.json({success:true, info:stdout});
             }
@@ -56,16 +59,25 @@ router.get('/start', function(req, res) {
 router.get('/stop', function(req, res) {
     var exec = require('child_process').exec,
         child;
+    var commandTimeout;
     // var execCommand = './bash/fswebcam -r 1920x1080 -S 15 --jpeg 99 -p MJPEG --shadow --title "Images" --subtitle "By Charmyin" --info "Author: Charmyin" -q --save /mnt/usb/test';
-    var execCommand="killall -9 fswebcam ";
+    var execCommand="sudo killall -9 fswebcam";
     child = exec(execCommand,
         function (error, stdout, stderr) {
             if (error !== null) {
+                //clearTimeout(commandTimeout);
+                console.log("wrong------------------------------");
                 res.json({success:false, error:stderr});
             }else{
+                //clearTimeout(commandTimeout);
+                console.log("OK------------------------------");
                 res.json({success:true, info:stdout});
             }
         });
+    console.log("End naturally------------------------------");
+    /*commandTimeout=setTimeout(function() {
+        res.json({success:true});
+    }, 3000);*/
 });
 
 router.get("/dirIndex", function(req, res){
@@ -90,7 +102,7 @@ router.get("/dirList", function(req, res){
                 directoryTemp.createTime=tempStdoutArray[0]+" "+tempStdoutArray[1].split(".")[0];
                 directoryTemp.name=tempStdoutArray[2];
                 responseDirectoryArray.push(directoryTemp);
-                console.log(stdoutArray[i]);
+                //console.log(stdoutArray[i]);
             }
 
             res.json(responseDirectoryArray);

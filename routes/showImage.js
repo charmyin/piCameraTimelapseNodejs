@@ -19,7 +19,6 @@ router.get('/showImageIndex', function(req, res) {
 });
 
 
-
 router.get('/imageListJson', function(req, res){
     var exec = require('child_process').exec,
         child;

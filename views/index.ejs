@@ -35,7 +35,8 @@
              });
          }
          function stopTimelapse(){
-             $.ajax("/devices/stop").done(function(data){
+             $.ajax("/devices/stop?random="+Math.random()).done(function(data){
+                 //alert(data.info);
                  loadComponents();
              });
          }
