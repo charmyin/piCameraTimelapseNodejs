@@ -39,12 +39,10 @@ router.get('/start', function(req, res) {
     child = exec(execCommand,
         function (error, stdout, stderr) {
             if (error !== null) {
-                console.log("oh no ---------------------------------");
                 //clearTimeout(commandTimeout);
                 return;
                 //res.json({success:false, error:stderr});
             }else{
-                console.log("oh no ++++++++++++++++++++++++++++++++++++++");
                 clearTimeout(commandTimeout);
                 res.json({success:true, info:stdout});
             }
@@ -67,15 +65,12 @@ router.get('/stop', function(req, res) {
         function (error, stdout, stderr) {
             if (error !== null) {
                 //clearTimeout(commandTimeout);
-                console.log("wrong------------------------------");
                 res.json({success:false, error:stderr});
             }else{
                 //clearTimeout(commandTimeout);
-                console.log("OK------------------------------");
                 res.json({success:true, info:stdout});
             }
         });
-    console.log("End naturally------------------------------");
     /*commandTimeout=setTimeout(function() {
         res.json({success:true});
     }, 3000);*/
