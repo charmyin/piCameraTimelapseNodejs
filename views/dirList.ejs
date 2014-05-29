@@ -37,11 +37,11 @@
           };
           $(function(){
             $.ajax("/devices/dirList").done(function(data){
-                addListItem(data);
-                $("tr").click(function(){
-                    window.location="/image/showImageIndex?dirName="+$(this).find("td:eq(1)").text();
-                });
-            });
+                  addListItem(data);
+                  $("tr").click(function(){
+                      window.location="/image/showImageIndex?dirName="+$(this).find("td:eq(1)").text();
+                  });
+              });
           });
 
       </script>

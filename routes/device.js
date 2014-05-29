@@ -33,8 +33,9 @@ router.get('/start', function(req, res) {
         child;
    /// / var execCommand = './bash/fswebcam -r 1920x1080 -S 15 --jpeg 99 -p MJPEG --shadow --title "Images" --subtitle "By Charmyin" --info "Author: Charmyin" -q --save /mnt/usb/test';
 
-    var execCommand="./start.sh";
+    var execCommand="/home/pi/apps/nodejs/piTimeLapse/start.sh";
     var commandTimeout;
+    var errInfo;
     child = exec(execCommand,
         function (error, stdout, stderr) {
             if (error !== null) {
@@ -50,7 +51,7 @@ router.get('/start', function(req, res) {
         }
     );
     commandTimeout=setTimeout(function() {
-        res.json({success:true});
+        res.json({success:true, info:errInfo});
     }, 3000);
 
 });
